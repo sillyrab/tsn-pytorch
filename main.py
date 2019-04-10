@@ -21,6 +21,7 @@ def main():
     global args, best_prec1
     args = parser.parse_args()
 
+    #数据集的选择
     if args.dataset == 'ucf101':
         num_class = 101
     elif args.dataset == 'hmdb51':
@@ -30,6 +31,7 @@ def main():
     else:
         raise ValueError('Unknown dataset '+args.dataset)
 
+    #导入模型
     model = TSN(num_class, args.num_segments, args.modality,
                 base_model=args.arch,
                 consensus_type=args.consensus_type, dropout=args.dropout, partial_bn=not args.no_partialbn)
